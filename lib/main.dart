@@ -1,25 +1,21 @@
-import 'package:bytebank/screens/dashboard.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
+import 'package:bilheteria_panucci/screens/home.dart';
+import 'package:bilheteria_panucci/themes/my_themes.dart';
 
 void main() {
-  runApp(BytebankApp());
+  runApp(const BilheteriaPanucci());
 }
 
-class BytebankApp extends StatelessWidget {
+class BilheteriaPanucci extends StatelessWidget {
+  const BilheteriaPanucci({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.green[900],
-        accentColor: Colors.blueAccent[700],
-        buttonTheme: ButtonThemeData(
-          buttonColor: Colors.blueAccent[700],
-          textTheme: ButtonTextTheme.primary,
-        ),
-      ),
-      home: Dashboard(),
+      title: 'Bilheteria Panucci',
+      theme: MyThemes.getTheme("default"),
+      home: const Home(),
     );
   }
 }
