@@ -45,18 +45,32 @@ class _HomeState extends State<Home> {
                     return const SliverFillRemaining(
                         child: Center(child: CircularProgressIndicator()));
                   } else if (state is HomeSucess) {
-                    return SliverGrid.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisExtent: 240,
-                      ),
-                      itemBuilder: (context, index) {
-                        return MovieCard(movie: state.movies[index]);
-                      },
-                      itemCount: state.movies.length,
-                    );
+                    if (state.movies.isEmpty) {
+                      return const SliverFillRemaining(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                            Icon(
+                              Icons.not_interested,
+                              size: 30.0,
+                            ),
+                            SizedBox(height: 16.0),
+                            Text('Nao existem filmes nesta categoria')
+                          ]));
+                    } else {
+                      return SliverGrid.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisExtent: 240,
+                        ),
+                        itemBuilder: (context, index) {
+                          return MovieCard(movie: state.movies[index]);
+                        },
+                        itemCount: state.movies.length,
+                      );
+                    }
                   } else if (state is HomeError) {
                     return SliverFillRemaining(
                         child: Column(
